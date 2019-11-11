@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <script>
+      function changeCss(){
+      document.getElementById("cs").href = "css/draw.css";
+      }
+    </script>
+    <meta charset="utf-8">
+    <canvas id="myCanvas" onclick="changeCss();"width="1112px" height="884px"></canvas>
+    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/draw.css" id="css_draw"> -->
+    <link rel="stylesheet" type="text/css" href="css/picture.css" id="cs">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+      //CSSを変更する
+      function changeCss_last(){
+      document.getElementById("cs").href = "css/original.css";
+      }
+
+      function changeCss_picture(){
+      document.getElementById("css_picture").href = "draw.css";
+      }
+
+      //変数定義
+      var cs       = document.getElementById('myCanvas'),
+          ctx      = cs.getContext('2d'),
+          csWidth  = cs.width,
+          csHeight = cs.height,
+          center   = {
+            x: csWidth /2,
+            y: csHeight / 2
+          };
+      // 線の基本スタイル
+      ctx.strokeStyle = '#666';
+      ctx.lineWidth = 3;
+
+      // 横線を引く
+      var drawHorizontalLine = function() {
+        ctx.beginPath();
+        ctx.moveTo(0, center.y);
+        ctx.lineTo(csWidth, center.y);
+        ctx.closePath();
+        ctx.stroke();
+      };
+
+      // 縦線を引く
+      var drawVerticalLine = function() {
+        ctx.beginPath();
+        ctx.moveTo(center.x, 0);
+        ctx.lineTo(center.x, csHeight);
+        ctx.closePath();
+        ctx.stroke();
+      };
+
+      drawHorizontalLine();
+      drawVerticalLine();
+
+      var x = Math.floor( Math.random() * 4) ;
+        function a() {
+          document.getElementById("image").src = "images2/"+ x+".png";;
+        }
+        function b() {
+          document.getElementById("imaga").src = "images2/"+ x+".png";
+        }
+
+    </script>
+
+    <style>
+    body {
+     text-align:center;
+     width:100%;
+     height: 100%;
+     margin:0;
+
+    }
+
+    #canvas {
+      border:0px solid gray;
+    }
+
+    #aaa {
+      margin-top:3px;
+    }
+
+    #bbb {
+      width: 0px;
+      margin-left: 0px;
+    }
+
+    #ccc {
+      margin-left: 60px;
+      width: 50%;
+      height: 50px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #item1 {
+     display: none;
+    }
+
+    </style>
+
+  </head>
+  <body onload="a();b()">
+    <div id="picture">
+      <!--選ぶ動物の画像のコードです、-->
+      <img id="image"  onclick="changeCss_picture();" width="100%" height="100%">
+      <!--画像を変更するボタンののコードです、このページを改めてリンクにすることでリロードし、ランダムをもう一度起こすようにしています-->
+      <div class="reload">
+         <img src="images2/henkou3.png"onclick="window.location.reload();"width="25%" height="25%">
+      </div>
+    </div>
+
+  <div id="draw">
+    <div class="button">
+      <img src="images2/owari.png" onclick="changeCss_last();" width="200px">
+    </div>
+
+    <div id="aaa">
+      <div id="bbb">
+        <canvas id="canvas" width=2100px height=1450px></p>残念ながらHTML5に対応していません</canvas>
+      </div>
+      
+    </div>
+
+    <div id="item">
+     <div id="item1">
+       <p>線の太さ<input type="range" min="0" max="100" value="10" id="lineWidth"><span id="lineNum">10</span></p>
+       <p>透 明 度  <input type="range" min="0" max="100" value="100" id="alpha"><span id="alphaNum">100</span></p>
+     </div>
+    </div>
+
+    <script>
+    //絵を描くスクリプト
+    //canvasの読み込み設定
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    //マウスを操作する
+    var mouse = {x:0,y:0,x1:0,y1:0,color:"black"};
+    var draw = false;
+
+    //マウスの座標を取得する
+    canvas.addEventListener("mousemove",function(e) {
+      var rect = e.target.getBoundingClientRect();
+      ctx.lineWidth = document.getElementById("lineWidth").value;
+      ctx.globalAlpha = document.getElementById("alpha").value/100;
+
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+
+
+    //クリック状態なら描画をする
+    if(draw === true) {
+        ctx.beginPath();
+        ctx.moveTo(mouseX1,mouseY1);
+        ctx.lineTo(mouseX,mouseY);
+        ctx.lineCap = "round";
+        ctx.stroke();
+        mouseX1 = mouseX;
+        mouseY1 = mouseY;
+      }
+    });
+
+    //クリックしたら描画をOKの状態にする
+    canvas.addEventListener("mousedown",function(e) {
+      draw = true;
+      mouseX1 = mouseX;
+      mouseY1 = mouseY;
+      undoImage = ctx.getImageData(0, 0,canvas.width,canvas.height);
+    });
+
+    //クリックを離したら、描画を終了する
+    canvas.addEventListener("mouseup", function(e){
+      draw = false;
+      });
+
+    var finger=new Array;
+    for(var i=0;i<10;i++){
+      finger[i]={
+        x:0,y:0,x1:0,y1:0,
+        color:"rgb("
+        +Math.floor(Math.random()*16)*15+","
+        +Math.floor(Math.random()*16)*15+","
+        +Math.floor(Math.random()*16)*15
+        +")"
+      };
+    }
+
+    //タッチした瞬間座標を取得
+    canvas.addEventListener("touchstart",function(e){
+      e.preventDefault();
+      var rect = e.target.getBoundingClientRect();
+      ctx.lineWidth = document.getElementById("lineWidth").value;
+      ctx.globalAlpha = document.getElementById("alpha").value/100;
+      undoImage = ctx.getImageData(0, 0,canvas.width,canvas.height);
+      for(var i=0;i<finger.length;i++){
+        finger[i].x1 = e.touches[i].clientX-rect.left;
+        finger[i].y1 = e.touches[i].clientY-rect.top;
+      }
+    });
+
+   //タッチして動き出したら描画
+    canvas.addEventListener("touchmove",function(e){
+      e.preventDefault();
+      var rect = e.target.getBoundingClientRect();
+      for(var i=0;i<finger.length;i++){
+        finger[i].x = e.touches[i].clientX-rect.left;
+        finger[i].y = e.touches[i].clientY-rect.top;
+        ctx.beginPath();
+        ctx.moveTo(finger[i].x1,finger[i].y1);
+        ctx.lineTo(finger[i].x,finger[i].y);
+        ctx.lineCap="round";
+        ctx.stroke();
+        finger[i].x1=finger[i].x;
+        finger[i].y1=finger[i].y;
+      }
+    });
+
+   // スクロールを無効にする
+   $(window).on('touchmove.noScroll', function(e) {
+        e.preventDefault();
+      });
+
+    // スクロール無効を解除する
+    $(window).off('.noScroll');
+  </script>
+
+  <img id="imaga"  width="20%" height="20%">
+  <div >
+    <a href="index.html"><img id="mouikkai" src="images2/mouikkai.png"></a>
+  </div>
+
+    <div id="yajirusi">
+
+      <div class="right1">
+        <a href="#link_rightup"> <img src="images2/right2.png" width="100px" height="80px">
+        <p id="link_rightup"></p>
+        </a>
+      </div>
+
+      <!--
+      <div class="right2">
+        <a href="#link_rightdown"> <img src="images2/right2.png" width="100px" height="80px">
+        <p id="link_rightdown"></p>
+        </a>
+      </div>
+      -->
+
+      <!--
+      <div class="down1">
+        <a href="#link_leftdown"> <img src="images2/down.png" width="80px" height="100px">
+        <p id="link_leftdown"></p>
+        </a>
+      </div>
+      -->
+
+      <div class="down2">
+        <a href="#link_rightdown"> <img src="images2/down.png" width="80px" height="100px">
+        <p id="link_rightdown"></p>
+        </a>
+      </div>
+
+      <!--
+      <div class="left1">
+        <a href="#link_leftup"> <img src="images2/left.png" width="100px" height="80px">
+        <p id="link_leftup"></p>
+        </a>
+      </div>
+      -->
+
+      <div class="left2">
+        <a href="#link_leftdown"> <img src="images2/left.png" width="100px" height="80px">
+        <p id="link_leftdown"></p>
+        </a>
+      </div>
+
+      <!--<div class="up1">
+        <a href="#link_leftup"> <img src="images2/up.png" width="80px" height="100px">
+        <p id="link_leftup"></p>
+        </a>
+      </div>
+      -->
+
+      <!--
+      <div class="up2">
+        <a href="#link_rightup"> <img src="images2/up.png" width="80px" height="100px">
+        </a>
+      </div>
+      -->
+
+    </div>
+
+    <div id="genzai">
+      <img id="migiue" src="images2/migiue.png">
+      <img id="migishita" src="images2/migishita.png">
+      <img id="hidariue" src="images2/hidariue.png">
+      <img id="hidarishita" src="images2/hidarishita.png">
+    </div>
+
+  </div>
+  </body>
+
+</html>

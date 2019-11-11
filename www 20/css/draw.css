@@ -1,0 +1,168 @@
+/* This is a CSS file */
+#picture{
+  display: none;
+}
+#myCanvas{
+  display: none;
+}
+#imaga{
+  display: none;
+}
+#mouikkai{
+  display: none;
+}
+#canvas{
+  position: absolute;
+}
+#mouikkai{
+  display: none;
+}
+
+#migiue{
+  position: absolute;
+  z-index: 2;
+  width: 15%;
+  height: 15%;
+  top: 10px;
+  left: 1900px;
+  opacity: 0.5;
+}
+#migishita{
+  position: absolute;
+  z-index: 2;
+  width: 15%;
+  height: 15%;
+  top: 1500px;
+  left: 1900px;
+  opacity: 0.5;
+}
+#hidariue{
+  position: absolute;
+  z-index: 2;
+  width: 15%;
+  height: 15%;
+  top: 10px;
+  left: 10px;
+  opacity: 0.5;
+}
+#hidarishita{
+  position: absolute;
+  z-index: 2;
+  width: 15%;
+  height: 15%;
+  top: 1500px;
+  left: 10px;
+  opacity: 0.5;
+}
+.button{
+  position:relative ;
+  top: 850px;
+  left:0px;
+  size: 100%;
+  width:400px;
+  height:100px;
+  z-index: 5;
+}
+
+.right1{
+  position:absolute ;
+  top: 0px;
+  left:80%;
+  size: 100%;
+  z-index: 1;
+}
+
+/*.right2{
+  position:absolute ;
+  top: 185%;
+  left:85%;
+  size: 100%;
+  z-index: 1;
+}*/
+
+/*.down1{
+  position:absolute ;;
+  top: 85%;
+  left:0px;
+  size: 100%;
+  z-index: 1;
+}*/
+
+.down2{
+  position:absolute ;;
+  top: 80%;
+  left:185%;
+  size: 100%;
+  z-index: 1;
+}
+
+/*.left1{
+  position:absolute ;;
+  top: 0px;
+  left:105%;
+  size: 100%;
+  z-index: 1;
+}*/
+
+.left2{
+  position:absolute ;;
+  top: 190%;
+  left:105%;
+  size: 100%;
+  z-index: 1;
+}
+
+.up1{
+  position:absolute ;;
+  top: 105%;
+  left: 0px;
+  size: 100%;
+  z-index: 1;
+}
+
+/*.up2{
+  position:absolute ;;
+  top: 105%;
+  left:185%;
+  size: 100%;
+  z-index: 1;
+}*/
+
+.left_up{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+p#link_rightup{
+  position:relative ;
+  top: -100px;
+  left:5000px;
+ z-index: 1;
+}
+
+p#link_leftup{
+  position: relative;
+  top: -100px;
+  left: -2000px;
+  z-index: 1;
+}
+
+p#link_leftdown{
+  position:relative ;
+  top: 2000px;
+  right:2000px;
+  z-index: 1;
+}
+
+p#link_rightdown{
+  position:relative ;
+  top: 2000px;
+  left:2000px;
+  z-index: 1;
+}
+
+body {
+ zoom: 100%;
+}

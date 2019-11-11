@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html>
+  <a href=draw.html><canvas id="myCanvas" width="800" height="580"></canvas>
+   <script src="js/line.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/picture.css">
+    <script src="components/loader.js"></script>
+     
+   </head>
+   <!--ニフクラからランダムで持ってくるコードです Math.random() * 4の４の部分を変更すると範囲が０〜４の範囲が変わります-->
+   <script>
+
+ var x = Math.floor( Math.random() * 4) ;
+
+        function a() {
+        document.getElementById("image").src = "https://mbaas.api.nifcloud.com/2013-09-01/applications/08jyyVMPVy5hsRDX/publicFiles/"+ x +".png";
+        }
+    </script>
+</head>
+<body onload="a()">
+<!--選ぶ動物の画像のコードです、-->
+ <a href=draw.html><img id="image"  alt="写真" width="800" height="650">
+<!--画像を変更するボタンののコードです、このページを改めてリンクにすることでリロードし、ランダムをもう一度起こすようにしています-->
+<div class="reload">
+   <a href=picture.html> <img src="images2/henkou2.png" alt="画像の説明文" 
+      width="25%" height="25%">
+   </div>
+
+<body>
+    <!-- TODO: Please edit here -->
+</body>
+
+
+
+
+<!-- 
+<div class="draw">
+<body>
+  <title>お絵かきソフト</title>
+<link rel="stylesheet" type="text/css" href="css/draw.css" id="cs">
+ <script>
+   function changeCss(){
+   document.getElementById("cs").href = "css/original.css";
+   }
+ </script>
+</head>
+<style>
+body {
+text-align:center;
+width:2100px;
+height: 4000px;
+margin:0;
+
+}
+
+h1 {
+font-size:36px;
+font-family: Arial, sans-serif;
+font-weight:bold;
+}
+
+
+#canvas {
+ border:0px solid gray;
+}
+
+#aaa {
+
+ margin-top:3px;
+}
+
+#bbb {
+ width: 750px;
+ margin-left: -60px;
+}
+
+#ccc {
+ margin-left: 60px;
+ width: 50%;
+ height: 50px;
+ cursor: pointer;
+}
+
+
+li {
+ width: 30px;
+ height: 30px;
+ display:inline-block;
+
+}
+
+#item1 {
+float:left;
+width:auto;
+margin-left:0px;
+
+}
+
+
+</style>
+</head>
+<body>
+ <div class="button">
+ <img src="images2/owari.png" width="20%" "input type="button" onclick="changeCss();" value="CSSを変更する">
+ 
+ <div class="right>
+  <a href=picture.html> <img src="images2/right.png" alt="画像の説明文"
+     width="100%" height="100%">
+  </div>
+<div id="aaa">
+ <div id="bbb">
+ <canvas id="canvas" width="3000" height="2000">
+   </p>残念ながらHTML5に対応していません</canvas>
+ </div>
+ <div id="ccc">
+ <ul>
+<li style="background-color:#1b1b1b"></li>
+<li style="background-color:#FF0000"></li>
+<li style="background-color:#FFFF00"></li>
+<li style="background-color:#00FF00"></li>
+<li style="background-color:#0000FF"></li>
+<li><p><button style="width:50px;" id="clear">消去</button>  </p></li>
+
+</ul>
+
+ </div>
+</div>
+<div id="item">
+<div id="item1">
+<p>線の太さ<input type="range" min="0" max="100" value="10" id="lineWidth"><span id="lineNum">10</span></p>
+<p>透 明 度  <input type="range" min="0" max="100" value="100" id="alpha"><span id="alphaNum">100</span></p>
+</div>
+<div id="item2">
+
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  $(window).on('touchmove.noScroll', function(e) {
+    e.preventDefault();
+});
+
+// スクロール無効を解除する
+$(window).off('.noScroll');
+  
+
+//canvasの読み込み設定
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+//マウスを操作する
+var mouse = {x:0,y:0,x1:0,y1:0,color:"black"};
+var draw = false;
+
+
+// スクロール無効を解除する
+$(window).off('.noScroll');
+
+//マウスの座標を取得する
+canvas.addEventListener("mousemove",function(e) {
+ var rect = e.target.getBoundingClientRect();
+ ctx.lineWidth = document.getElementById("lineWidth").value;
+ctx.globalAlpha = document.getElementById("alpha").value/100;
+
+ mouseX = e.clientX - rect.left;
+ mouseY = e.clientY - rect.top;
+
+
+ //クリック状態なら描画をする
+ if(draw === true) {
+   ctx.beginPath();
+   ctx.moveTo(mouseX1,mouseY1);
+   ctx.lineTo(mouseX,mouseY);
+   ctx.lineCap = "round";
+   ctx.stroke();
+   mouseX1 = mouseX;
+   mouseY1 = mouseY;
+ }
+});
+
+ //クリックしたら描画をOKの状態にする
+ canvas.addEventListener("mousedown",function(e) {
+   draw = true;
+   mouseX1 = mouseX;
+   mouseY1 = mouseY;
+   undoImage = ctx.getImageData(0, 0,canvas.width,canvas.height);
+});
+
+//クリックを離したら、描画を終了する
+canvas.addEventListener("mouseup", function(e){
+ draw = false;
+});
+
+
+//線の太さの値を変える
+lineWidth.addEventListener("mousemove",function(){
+var lineNum = document.getElementById("lineWidth").value;
+document.getElementById("lineNum").innerHTML = lineNum;
+});
+
+//透明度の値を変える
+alpha.addEventListener("mousemove",function(){
+var alphaNum = document.getElementById("alpha").value;
+document.getElementById("alphaNum").innerHTML = alphaNum;
+});
+
+//色を選択
+ $('li').click(function() {
+       ctx.strokeStyle = $(this).css('background-color');
+   });
+
+//消去ボタンを起動する
+$('#clear').click(function(e) {
+       e.preventDefault();
+       ctx.clearRect(0, 0, canvas.width, canvas.height);
+   });
+
+//戻るボタンを配置
+$('#undo').click(function(e) {
+   ctx.putImageData(undoImage,0,0);
+});
+
+
+
+//スマホ用
+var finger=new Array;
+for(var i=0;i<10;i++){
+ finger[i]={
+  x:0,y:0,x1:0,y1:0,
+  color:"rgb("
+  +Math.floor(Math.random()*16)*15+","
+  +Math.floor(Math.random()*16)*15+","
+  +Math.floor(Math.random()*16)*15
+  +")"
+ };
+}
+
+//タッチした瞬間座標を取得
+canvas.addEventListener("touchstart",function(e){
+ e.preventDefault();
+ var rect = e.target.getBoundingClientRect();
+ ctx.lineWidth = document.getElementById("lineWidth").value;
+ ctx.globalAlpha = document.getElementById("alpha").value/100;
+ undoImage = ctx.getImageData(0, 0,canvas.width,canvas.height);
+ for(var i=0;i<finger.length;i++){
+  finger[i].x1 = e.touches[i].clientX-rect.left;
+  finger[i].y1 = e.touches[i].clientY-rect.top;
+
+
+
+ }
+});
+
+//タッチして動き出したら描画
+canvas.addEventListener("touchmove",function(e){
+ e.preventDefault();
+ var rect = e.target.getBoundingClientRect();
+ for(var i=0;i<finger.length;i++){
+  finger[i].x = e.touches[i].clientX-rect.left;
+  finger[i].y = e.touches[i].clientY-rect.top;
+  ctx.beginPath();
+  ctx.moveTo(finger[i].x1,finger[i].y1);
+  ctx.lineTo(finger[i].x,finger[i].y);
+  ctx.lineCap="round";
+  ctx.stroke();
+  finger[i].x1=finger[i].x;
+  finger[i].y1=finger[i].y;
+
+ }
+});
+
+//線の太さの値を変える
+lineWidth.addEventListener("touchmove",function(){
+var lineNum = document.getElementById("lineWidth").value;
+document.getElementById("lineNum").innerHTML = lineNum;
+});
+
+//透明度の値を変える
+alpha.addEventListener("touchmove",function(){
+var alphaNum = document.getElementById("alpha").value;
+document.getElementById("alphaNum").innerHTML = alphaNum;
+});
+
+
+
+</script>
+<div class="right">
+  <a href="#link"> <img src="images2/right2.png" alt="画像の説明文"
+     width="100px" height="100px">
+
+   <p style="padding-left: 0px">
+     <p id="link"></a>
+   </p>
+
+   <div class="right3">
+  <a href="#link7"> <img src="images2/right2.png" alt="画像の説明文"
+     width="100px" height="100px">
+
+   <p style="padding-left: 0px">
+     <p id="link7"></a>
+   </p>
+
+   <div class="down">
+   <a href="#link2"> <img src="images2/down.png" alt="画像の説明文"
+     width="100px" height="100px">
+
+   <p style="padding-left: 0px">
+     <p id="link2"></a>
+   </p>
+
+   <div class="left">
+  <a href="#link3"> <img src="images2/left.png" alt="画像の説明文"
+     width="100px" height="100px">
+
+   <p style="padding-left: 200px">
+     <p id="link3"></a>
+   </p>
+   <div class="left2">
+  <a href="#link8"> <img src="images2/left.png" alt="画像の説明文"
+     width="100px" height="100px">
+
+   <p style="padding-left: 200px">
+     <p id="link8"></a>
+   </p>
+     <div class="down2">
+   <a href="#link4"> <img src="images2/down.png" alt="画像の説明文"
+     width="100px" height="100px">
+     <p style="padding-left: 0px">
+     <p id="link4"></a>
+   </p>
+
+   <div class="up">
+  <a href="#link6"> <img src="images2/up.png" alt="画像の説明文"
+     width="100px" height="100px">
+
+   <p style="padding-left: 0px">
+     <p id="link6"></a>
+   </p>
+   <div class="up2">
+  <a href="#link9"> <img src="images2/up.png" alt="画像の説明文"
+     width="100px" height="100px">
+
+   <p style="padding-left: 0px">
+     <p id="link9"></a>
+   </p>
+
+<div class="mouikkai">
+  <a href="index.html"> <img src="images2/mouikkai.png" alt="画像の説明文"
+     width="50%">
+
+<div class="button2">
+ <img src="images2/owari.png" width="10%" "input type="button" onclick="changeCss();" value="CSSを変更する">
+ <div class="button3">
+ <img src="images2/owari.png" width="10%" "input type="button" onclick="changeCss();" value="CSSを変更する">
+ <div class="button4">
+ <img src="images2/owari.png" width="10%" "input type="button" onclick="changeCss();" value="CSSを変更する">
+
+-->
+ </body>
+ </div>
+
+</html>

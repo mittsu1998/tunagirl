@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <script src="components/loader.js"></script>
+    <a href="javascript:imageChanger(-1)"><img src="images2/modoru.png" alt="画像の説明文" 
+      width="20%"height="20%" </a> <a href=draw.html> <img src="https://mbaas.api.nifcloud.com/2013-09-01/applications/dkukS982QJQ34o1b/publicFiles/3.png" name="sushi"width="1000" height="750"><a href=draw.html> </a>
+    <a href="javascript:imageChanger(1)"><img src="images2/tsugihe.png" alt="画像の説明文" 
+      width="20%"height="20%" </a> </a>
+
+<script type="text/javascript">
+imgFile = new Array("https://mbaas.api.nifcloud.com/2013-09-01/applications/dkukS982QJQ34o1b/publicFiles/7.jpg","https://mbaas.api.nifcloud.com/2013-09-01/applications/dkukS982QJQ34o1b/publicFiles/3.png",
+"https://mbaas.api.nifcloud.com/2013-09-01/applications/dkukS982QJQ34o1b/publicFiles/4.png",
+"https://mbaas.api.nifcloud.com/2013-09-01/applications/dkukS982QJQ34o1b/publicFiles/5.png",
+"https://mbaas.api.nifcloud.com/2013-09-01/applications/dkukS982QJQ34o1b/publicFiles/2.png",
+)
+; //*1
+count = 0; //*2
+
+function imageChanger(num) {
+	//切替番号
+	count += num; //*3
+	//画像の枚数確認
+	if (count >= imgFile.length) count = 0; //*4 枚数を超えるとき
+	if (count < 0) count = imgFile.length - 1; //*5 0番目より小さいとき
+	//画像出力
+	document.sushi.src =imgFile[count]; //*6
+}
+</script>
+
+</head>
+<body>
+ 
+    <!-- TODO: Please edit here -->
+</body>
+</html>

@@ -1,0 +1,165 @@
+/* This is a CSS file */
+body {
+ zoom:50%;
+}
+#myCanvas{
+  display: none;
+}
+#picture{
+  display: none;
+}
+#yajirusi{
+  display: none;
+}
+#genzai{
+  display: none;
+}
+#canvas{
+  position: absolute;
+}
+#imaga{
+  position: absolute;
+  z-index: 8;
+  left: 10px;
+  top: 10px;
+  opacity: 0.8;
+}
+#mouikkai{
+  position: absolute;
+  z-index: 5;
+  width: 20%;
+  left: 1700px;
+  top: 1200px;
+}
+.button{
+  display: none;
+}
+.right{ 
+  position:absolute; 
+top: 10000px;
+left:900px;
+size: 0%;
+ z-index: 1;
+ 
+}
+.right3{ 
+  position:absolute ; 
+top: 1500px;
+left:0px;
+size: 0%;
+ z-index: 2;
+ 
+}
+
+.down{ 
+  position:absolute ; 
+top: -800px;
+left:-900px;
+size: 0%;
+ z-index: 1;
+ 
+}
+.down2{ 
+  position:absolute ; 
+top: -800px;
+left:1000px;
+size: 0%;
+ z-index: 1;
+ 
+}
+.left{ 
+  position:absolute ; 
+top: -700px;
+left:1020px;
+size: 0%;
+ z-index: 1;
+ 
+}
+.left2{ 
+  position:absolute ; 
+top: 1500px;
+left:0px;
+size: 0%;
+ z-index: 1;
+ 
+}
+.up{ 
+  position:absolute ; 
+top: 100px;
+left:-2020px;
+size: 0%;
+ z-index: 1;
+ 
+}
+.up2{ 
+  position:absolute ; 
+top: 30px;
+left:2020px;
+size: 0%;
+ z-index: 1;
+ 
+}
+
+
+p#link{ 
+  position:relative ; 
+top: -100px;
+left:1100px;
+ z-index: 1;
+}
+p#link3{ 
+  position:relative ; 
+top: -100px;
+right:1100px;
+ z-index: 1;
+}
+p#link4{ 
+  position:relative ; 
+top: 0px;
+left:-500px;
+ z-index: 1;
+}
+p#link5{ 
+  position:relative; 
+top: -100px;
+left:1100px;
+ z-index: 1;
+}
+p#link6{ 
+  position:relative ;
+top: -1000px;
+left:0;
+ z-index: 1;
+}
+p#link7{ 
+  position:relative ;
+top: -800px;
+left:1200px;
+ z-index: 1;
+}
+p#link8{ 
+  position:relative ;
+top: -850px;
+right:1100px;
+ z-index: 1;
+}
+p#link9{ 
+  position:relative ;
+top: -1000px;
+left:-1000px;
+ z-index: 1;
+}
+p#link9{ 
+  position:relative ;
+top: -1000px;
+left:-1000px;
+ z-index: 1;
+}
+.mouikkai{ 
+  position:absolute ;
+top: -9600px;
+left:-1000px;
+size: 100%;
+ z-index: 1;
+ 
+}
